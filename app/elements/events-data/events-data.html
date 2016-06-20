@@ -1,0 +1,66 @@
+<dom-module id="events-data">
+
+  <template>
+	  <!--<iron-ajax auto url="https://raw.githubusercontent.com/mix986/mix986.github.io/master/list-events-new.json" handle-as="json" on-response="handleResponseEvents"></iron-ajax>
+	  <iron-ajax auto url="https://raw.githubusercontent.com/mix986/mix986.github.io/master/list-countries.json" handle-as="json" on-response="handleResponseCountries"></iron-ajax>
+	  <iron-ajax auto url="https://raw.githubusercontent.com/mix986/mix986.github.io/master/list-technology.json" handle-as="json" on-response="handleResponseTechnology"></iron-ajax>-->
+	  
+	  <firebase-app auth-domain="project-3982873176818605742.firebaseapp.com"
+	    database-url="https://project-3982873176818605742.firebaseio.com"
+	    api-key="AIzaSyDlTlv3HU9paKgsPCIuUc_N5pgxBqPdXJo">
+	  </firebase-app>
+	  
+	  
+		  <firebase-query
+		      id="query"
+		      path="/events"
+		      data="{{events}}">
+		  </firebase-query>
+		  
+		  <!--<firebase-query
+		      id="query"
+		      path="/countries/list"
+		      data="{{countries}}">
+		  </firebase-query>
+		  
+		  <firebase-query
+		      id="query"
+		      path="/technologies/list"
+		      data="{{technology}}">
+		  </firebase-query>-->
+	  
+  </template>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var countries = [];
+    var config = {
+      apiKey: "AIzaSyDlTlv3HU9paKgsPCIuUc_N5pgxBqPdXJo",
+      authDomain: "project-3982873176818605742.firebaseapp.com",
+      databaseURL: "https://project-3982873176818605742.firebaseio.com"
+    };
+    firebase.initializeApp(config);
+  
+    Polymer({
+      is: 'events-data',
+      properties: {
+        events: {
+          notify: true,
+		  value: [],
+		  
+        },
+        countries: {
+          notify: true,
+			value: []
+        },
+        technology: {
+          notify: true,
+		  value: []
+        }
+      },
+	  ready: function() {
+		  
+	  }
+    });
+  </script>
+</dom-module>

@@ -1,0 +1,109 @@
+<dom-module id="events-item">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+        min-height: 50px;
+      }
+	  
+	  paper-card {
+		  width:85%;
+		  margin-left:7%;
+	  }
+	  .title {
+		  font-size:24px;
+	  }
+	  span.clicker {
+	       cursor:pointer;
+	       color:blue;
+	       text-decoration:underline;
+	  }
+	  span.clicker:hover {
+	       text-decoration:none;
+	       text-shadow: 1px 0px 0px #555;
+	  }
+    </style>  
+  <paper-card>
+    <div class="card-content">
+		<a href="{{checkLink(event.link)}}" target="_blank" class="title">{{event.name}}</a> 
+		<br />{{event.human_date_start}} - {{event.city}}, <span class="clicker" on-click="countryClick">{{event.country}}</span>
+		
+		<p>
+			Description: {{event.description}} 
+			
+		</p>
+		
+		Topics: 
+		    	<template is="dom-repeat" items="{{event.technologies}}" as="singleTechnology">
+					  <span class="clicker" on-click="techClick">{{singleTechnology}}</span> -
+				</template>
+		<br />Expected attendees: <b>{{event.attendees}}</b> 
+		<template is="dom-if" if="{{checkC4P(event)}}" >
+			- <a href="{{event.call_for_paper_link}}" target="_blank">Call for Paper</a>
+		</template>
+    </div>
+  </paper-card>
+	  
+  </template>
+  <script>
+  
+  function updateURLParameter(param, paramVal){
+	  var url = window.location+'';;
+      var newAdditionalURL = "";
+      var tempArray = url.split("?");
+      var baseURL = tempArray[0];
+      var additionalURL = tempArray[1];
+      var temp = "";
+      if (additionalURL) {
+          tempArray = additionalURL.split("&");
+          for (i=0; i<tempArray.length; i++){
+              if(tempArray[i].split('=')[0] != param){
+                  newAdditionalURL += temp + tempArray[i];
+                  temp = "&";
+              }
+          }
+      }
+	  if(paramVal=="") {
+		  return baseURL;
+	  }
+      var rows_txt = temp + "" + param + "=" + paramVal;
+      return baseURL + "?" + newAdditionalURL + rows_txt;
+  }
+  
+    Polymer({
+      is: 'events-item',
+      properties: {
+        event: Object,
+        active: {
+          type: Boolean,
+          value: false
+        },
+		filter:Object
+      },
+	  checkC4P: function(data) {
+		  if(data.hasOwnProperty('call_for_paper_link') && (data.call_for_paper_link!="")) {
+			  return true;
+		  } else {
+			  return false;
+		  } 	  
+	  },
+	  checkLink: function(link) {
+		  if (link.search(/^http[s]?\:\/\//) == -1) {
+			  link = 'http://' + link;
+		  }
+		  return link;
+	  },
+	  techClick: function(event) {
+		  filter.technology = event.srcElement.innerText;
+		  var temp = document.querySelector("events-filter");
+		  temp._changeFilters(filter.country, filter.technology, filter.pastEvent);
+	  },
+	  countryClick: function(event) {
+		  filter.country = event.srcElement.innerText;
+		  var temp = document.querySelector("events-filter");
+		  temp._changeFilters(filter.country, filter.technology, filter.pastEvent);
+	  }
+    });
+  </script>
+</dom-module>
