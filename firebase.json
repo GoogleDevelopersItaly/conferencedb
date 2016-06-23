@@ -1,11 +1,4 @@
 {
-  "firebase": "gconfig",
-  "public": "dist",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ],
   "hosting": {
     "public": "dist",
     "rewrites": [

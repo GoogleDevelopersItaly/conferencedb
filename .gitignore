@@ -2,3 +2,5 @@ node_modules
 app/bower_components
 dist
 .DS_Store
+.tmp
+firebase.json
