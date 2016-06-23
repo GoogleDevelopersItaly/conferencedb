@@ -19,6 +19,6 @@
   },
   "resolutions": {
     "polymer": "master",
-	  "firebase": "3.0.5"
+    "firebase": "3.0.5"
   }
 }
