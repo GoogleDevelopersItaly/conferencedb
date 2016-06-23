@@ -235,6 +235,7 @@ gulp.task('serve', ['styles'], function() {
       baseDir: ['.tmp', 'app'],
       middleware: [historyApiFallback()]
     }
+	
   });
 
   gulp.watch(['app/**/*.html', '!app/bower_components/**/*.html'], reload);
