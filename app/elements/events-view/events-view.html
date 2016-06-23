@@ -56,35 +56,41 @@
 	      .spacer {
 	        @apply(--layout-flex);
 	      }
+		  footer{
+			  width:100%;
+			  text-align:center;
+		  }
 	    </style>
 		
-    	<!-- `keepCondensedHeader` makes the condensed header to not scroll away -->
     	<paper-scroll-header-panel condenses keep-condensed-header header-height="200" condensed-header-height="160">
 
-      	<paper-toolbar>
+      		<paper-toolbar>
         		<div class="indent bottom-text" self-end>
           			<div>List of European conferences relevant for Google technologies</div>
           			<div class="subtitle">Find or share top developer events near you!</div>
         	  	</div>
+				
 				<events-filter filter="{{filter}}" countries="{{countries}}" technology="{{technology}}"></events-filter>
-				<a class="bottom bookmark" href="https://docs.google.com/a/google.com/forms/d/1wt6a9fKGEZHv8FaQkCn7hINYzo9HH71L6aFG2BWAmz4/viewform" target="_blank">
+				
+				<a class="bottom bookmark" href="https://goo.gl/kp3aDU" target="_blank">
 					<paper-fab icon="add" position="vertical"></paper-fab>
 				</a>
-      	</paper-toolbar>
+      		</paper-toolbar>
 
-      	<div class="content">
-		    <events-data events="{{events}}" countries="{{countries}}" technology="{{technology}}"></events-data>
-			<events-list events="{{events}}" filter="{{filter}}"></events-list>
-            
-  			<!--<sample-content size="100"></sample-content>-->
-      	</div>
-
-    	</paper-scroll-header-panel>
-  </template>
-  <script>  
-    Polymer({
-      is: 'events-view'
-    });
-  </script>
+      		<div class="content">
+		    	<events-data events="{{events}}" countries="{{countries}}" technology="{{technology}}"></events-data>
+				<events-list events="{{events}}" filter="{{filter}}"></events-list>
+      		</div>
+		
+			<footer>
+				<p>Conference data is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>
+				</p>
+			</footer>
+		</paper-scroll-header-panel>
+	</template>
+  	<script>  
+    	Polymer({
+			is: 'events-view'
+		});
+	</script>
 </dom-module>
-  

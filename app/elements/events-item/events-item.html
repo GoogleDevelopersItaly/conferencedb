@@ -30,13 +30,12 @@
 		<br />{{event.human_date_start}} - {{event.city}}, <span class="clicker" on-click="countryClick">{{event.country}}</span>
 		
 		<p>
-			Description: {{event.description}} 
-			
+			{{checkDescriptionText(event.description)}} 
 		</p>
 		
 		Topics: 
 		    	<template is="dom-repeat" items="{{event.technologies}}" as="singleTechnology">
-					  <span class="clicker" on-click="techClick">{{singleTechnology}}</span> -
+					  <span class="clicker" on-click="techClick">{{singleTechnology}}</span> <span hidden$="[[computeSpanHidden(index, event.technologies)]]"> - </span>
 				</template>
 		<br />Expected attendees: <b>{{event.attendees}}</b> 
 		<template is="dom-if" if="{{checkC4P(event)}}" >
@@ -48,29 +47,6 @@
   </template>
   <script>
   
-  function updateURLParameter(param, paramVal){
-	  var url = window.location+'';;
-      var newAdditionalURL = "";
-      var tempArray = url.split("?");
-      var baseURL = tempArray[0];
-      var additionalURL = tempArray[1];
-      var temp = "";
-      if (additionalURL) {
-          tempArray = additionalURL.split("&");
-          for (i=0; i<tempArray.length; i++){
-              if(tempArray[i].split('=')[0] != param){
-                  newAdditionalURL += temp + tempArray[i];
-                  temp = "&";
-              }
-          }
-      }
-	  if(paramVal=="") {
-		  return baseURL;
-	  }
-      var rows_txt = temp + "" + param + "=" + paramVal;
-      return baseURL + "?" + newAdditionalURL + rows_txt;
-  }
-  
     Polymer({
       is: 'events-item',
       properties: {
@@ -81,6 +57,13 @@
         },
 		filter:Object
       },
+	  checkDescriptionText: function(data) {
+	  	  if(data=="") {
+			  return "No description for this event";
+	  	  } else {
+	  	  	  return data;
+	  	  }
+	  },
 	  checkC4P: function(data) {
 		  if(data.hasOwnProperty('call_for_paper_link') && (data.call_for_paper_link!="")) {
 			  return true;
@@ -103,6 +86,12 @@
 		  filter.country = event.srcElement.innerText;
 		  var temp = document.querySelector("events-filter");
 		  temp._changeFilters(filter.country, filter.technology, filter.pastEvent);
+	  },
+	  computeSpanHidden: function(index, el){
+	    if(el.length - 1 === index)
+	      { return true; } 
+	    else 
+	      { return false; }
 	  }
     });
   </script>

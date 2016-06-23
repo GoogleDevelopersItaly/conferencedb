@@ -48,45 +48,19 @@
 				<paper-dropdown-menu label="Country">
 					<paper-listbox id="dropdownCountry" class="dropdown-content" selected="{{filter.country}}" attr-for-selected="value">
 						<paper-item value="">All</paper-item>
-						<paper-item value="Austria">Austria</paper-item>
-						<paper-item value="France">France</paper-item>
-						<paper-item value="Germany">Germany</paper-item>
-						<paper-item value="Greece">Greece</paper-item>
-						<paper-item value="Ireland">Ireland</paper-item>
-						<paper-item value="Italy">Italy</paper-item>
-						<paper-item value="Netherlands">Netherlands</paper-item>
-						<paper-item value="Poland">Poland</paper-item>
-						<paper-item value="Spain">Spain</paper-item>
-						<paper-item value="Switzerland">Switzerland</paper-item>
-						<paper-item value="United Kingdom">United Kingdom</paper-item>
-						<!--<template is="dom-repeat" items="{{countries}}" as="country">
-	    					<paper-item value="{{country.name}}">{{country.name}}</paper-item>
-						</template>-->
+						<template is="dom-repeat" items="{{countries}}" as="country">
+	    					<paper-item value="{{country}}">{{country}}</paper-item>
+						</template>
 					</paper-listbox>
 				</paper-dropdown-menu>
 			</div>
 		  	<div>
-				<paper-dropdown-menu label="Technology">
+				<paper-dropdown-menu label="Topic">
 					<paper-listbox id="dropdownTechnology" class="dropdown-content" selected="{{filter.technology}}" attr-for-selected="value">
 						<paper-item value="">All</paper-item>
-						<paper-item value="Android">Android</paper-item>
-						<paper-item value="Chrome">Chrome</paper-item>
-						<paper-item value="Cloud">Cloud</paper-item>
-						<paper-item value="Design">Design</paper-item>
-						<paper-item value="Firebase">Firebase</paper-item>
-						<paper-item value="Gaming">Gaming</paper-item>
-						<paper-item value="Geo">Geo</paper-item>
-						<paper-item value="GoLang">GoLang</paper-item>
-						<paper-item value="IoT">IoT</paper-item>
-						<paper-item value="Marketing">Marketing</paper-item>
-						<paper-item value="Other">Other</paper-item>
-						<paper-item value="Startups">Startups</paper-item>
-						<paper-item value="Wear">Wear</paper-item>
-						<paper-item value="Web">Web</paper-item>
-						<paper-item value="iOS">iOS</paper-item>
-						<!--<template is="dom-repeat" items="{{technology}}" as="tech">
-	    					<paper-item value="{{tech.name}}">{{tech.name}}</paper-item>
-						</template>-->
+						<template is="dom-repeat" items="{{technology}}" as="tech">
+	    					<paper-item value="{{tech}}">{{tech}}</paper-item>
+						</template>
 					</paper-listbox>
 				</paper-dropdown-menu>
 			</div>
@@ -186,24 +160,11 @@
           filter: {
             notify: true,
   		  	value: filter
-          },
-          countries: {
-            notify: true,
-			value: Array
-          },
-          technology: {
-            notify: true,
-			value: Array
           }
       },
 	  observers: [
-		  '_changeFilters(filter.country, filter.technology, filter.pastEvent)',
-		  '_changeData(countries, technology)'
+		  '_changeFilters(filter.country, filter.technology, filter.pastEvent)'
 	  ],
-	  _changeData: function( country, technology) {
-	  	  this.countries = country;
-		  this.technology = technology;
-	  },
 	  _changeFilters: function(country, technology, pastEvent) {
 		  this.filter.country = country;
 		  this.filter.technology = technology;
