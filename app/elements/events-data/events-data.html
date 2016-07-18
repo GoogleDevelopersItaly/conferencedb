@@ -15,11 +15,11 @@
 		  
 		  <firebase-document
 		    path="/countries/list"
-		    data="{{tmpCountries}}"></firebase-document>
+		    data="{{countries}}"></firebase-document>
 			
 		  <firebase-document
 		    path="/technologies/list"
-		    data="{{tmpTechnologies}}"></firebase-document>
+		    data="{{technology}}"></firebase-document>
 		  
 	  
   </template>
@@ -32,12 +32,6 @@
           notify: true
 		  
         },
-		tmpCountries: {
-			value: []
-		},
-		tmpTechnologies: {
-			value: []
-		},
         countries: {
           notify: true,
 		  value: function(){ return []; },
@@ -45,20 +39,10 @@
         },
         technology: {
           notify: true,
-		  value: []
+		  value: function(){ return []; },
+		  type: Array
         }
-	  },
-  	  observers: [
-  		  '_changeData(tmpCountries, tmpTechnologies)'
-  	  ],
-  	  _changeData: function(tmpCountries, tmpTechnologies) {
-		  if(Array.isArray(tmpCountries)) {
-		  	this.countries = tmpCountries;
-	  	  }
-		  if(Array.isArray(tmpTechnologies)) {
-		  	this.technology = tmpTechnologies;
-	  	  }
-      }
+	  }
     });
   </script>
 </dom-module>

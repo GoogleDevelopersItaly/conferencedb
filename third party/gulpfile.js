@@ -117,18 +117,18 @@ gulp.task('ensureFiles', function(cb) {
 
 // Optimize images
 gulp.task('images', function() {
-  return imageOptimizeTask('app/images/**/*', dist('images'));
+  return imageOptimizeTask('../app/images/**/*', dist('images'));
 });
 
 // Copy all files at the root level (app)
 gulp.task('copy', function() {
   var app = gulp.src([
-    'app/*',
-    '!app/test',
-    '!app/elements',
-    '!app/bower_components',
-    '!app/cache-config.json',
-    '!**/.DS_Store'
+    '../app/*',
+    '!../app/test',
+    '!../app/elements',
+    '!../app/bower_components',
+    '!../app/cache-config.json',
+    '!../**/.DS_Store'
   ], {
     dot: true
   }).pipe(gulp.dest(dist()));
@@ -136,7 +136,7 @@ gulp.task('copy', function() {
   // Copy over only the bower_components we need
   // These are things which cannot be vulcanized
   var bower = gulp.src([
-    'app/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
+    '../app/bower_components/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
   ]).pipe(gulp.dest(dist('bower_components')));
 
   return merge(app, bower)
@@ -147,7 +147,7 @@ gulp.task('copy', function() {
 
 // Copy web fonts to dist
 gulp.task('fonts', function() {
-  return gulp.src(['app/fonts/**'])
+  return gulp.src(['../app/fonts/**'])
     .pipe(gulp.dest(dist('fonts')))
     .pipe($.size({
       title: 'fonts'
@@ -157,13 +157,13 @@ gulp.task('fonts', function() {
 // Scan your HTML for assets & optimize them
 gulp.task('html', function() {
   return optimizeHtmlTask(
-    ['app/**/*.html', '!app/{elements,test,bower_components}/**/*.html'],
+    ['../app/**/*.html', '!../app/{elements,test,bower_components}/**/*.html'],
     dist());
 });
 
 // Vulcanize granular configuration
 gulp.task('vulcanize', function() {
-  return gulp.src('app/elements/elements.html')
+  return gulp.src('../app/elements/elements.html')
     .pipe($.vulcanize({
       stripComments: true,
       inlineCss: true,
@@ -232,16 +232,16 @@ gulp.task('serve', ['styles'], function() {
     //       will present a certificate warning in the browser.
     // https: true,
     server: {
-      baseDir: ['.tmp', 'app'],
+      baseDir: ['../.tmp', '../app'],
       middleware: [historyApiFallback()]
     }
 	
   });
 
-  gulp.watch(['app/**/*.html', '!app/bower_components/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.css'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], reload);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['../app/**/*.html', '!app/bower_components/**/*.html'], reload);
+  gulp.watch(['../app/styles/**/*.css'], ['styles', reload]);
+  gulp.watch(['../app/scripts/**/*.js'], reload);
+  gulp.watch(['../app/images/**/*'], reload);
 });
 
 // Build and serve the output from the dist build

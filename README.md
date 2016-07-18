@@ -6,8 +6,9 @@ Website with a list of conferences
 For install dependence and test your application in local server
 
 1. cd conferencedb
-2. npm install -g gulp bower && npm install && bower install
-3. gulp serve
+2. npm install -g gulp bower && cd third\ party/ && npm install && cd .. && bower install
+3. cd third\ party/
+4. gulp serve
 
 
 For deploy your application on firebase hosting
