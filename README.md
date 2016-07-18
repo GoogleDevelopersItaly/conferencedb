@@ -1,5 +1,5 @@
 # conferencedb
-Website with a list of conferences
+Website with a list of conferences. This is not an official Google product.
 
 ## Getting Started
 
