@@ -52,9 +52,12 @@
 		    	<template is="dom-repeat" items="{{event.technologies}}" as="singleTechnology">
 					  <span class="clicker" on-click="techClick">{{singleTechnology}}</span> <span hidden$="[[computeSpanHidden(index, event.technologies)]]"> - </span>
 				</template>
-		<br />Expected attendees: <b>{{event.attendees}}</b> 
+		<br />
+		<template is="dom-if" if="{{checkAttendees(event)}}" >
+			Expected attendees: <b>{{event.attendees}}</b> - 
+		</template>	
 		<template is="dom-if" if="{{checkC4P(event)}}" >
-			- <a href="{{event.call_for_paper_link}}" target="_blank">Call for Paper</a>
+			<a href="{{event.call_for_paper_link}}" target="_blank">Call for Paper</a>
 		</template>
     </div>
   </paper-card>
@@ -85,6 +88,13 @@
 		  } else {
 			  return false;
 		  } 	  
+	  },
+	  checkAttendees: function (data) { 
+		  if(data.hasOwnProperty('attendees') && (data.attendees > 0)) {
+			  return true;
+		  } else {
+			  return false;
+		  } 
 	  },
 	  checkLink: function(link) {
 		  if (link.search(/^http[s]?\:\/\//) == -1) {

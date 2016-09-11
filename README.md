@@ -13,13 +13,14 @@ For install dependence and test your application in local server
 
 For deploy your application on firebase hosting
 
-1. gulp
-2. ONLY FIRST TIME: firebase init 
-	1. Chose this parameters: 
-	2. Firebase Service: Only hosting
-	3. Public folder: dist
-	4. Rewrite all urls to Index.html: y
-	5. Overwrite index.html: N
+1. cd third_party
+2. gulp
+2. cd ../
+3. ONLY FIRST TIME: firebase init 
+	1. Chose in Firebase Service: Only hosting
+	3. Chose in Public folder: dist
+	4. Chose in Rewrite all urls to Index.html: y
+	5. Chose in Overwrite index.html: N
 	6. Chose your project or create a new project
 3. firebase deploy
 
