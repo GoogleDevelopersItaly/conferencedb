@@ -10,7 +10,7 @@
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
     "page": "visionmedia/page.js#^1.6.3",
     "firebase-element": "GoogleWebComponents/firebase-element#^1.0.7",
-    "polymerfire": "^0.9.2",
+    "polymerfire": "^0.9.7",
     "app-storage": "^0.9.4"
   },
   "devDependencies": {
@@ -19,6 +19,6 @@
   },
   "resolutions": {
     "polymer": "master",
-    "firebase": "3.2.0"
+    "firebase": "3.3.2"
   }
 }

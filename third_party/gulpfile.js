@@ -42,7 +42,7 @@ var AUTOPREFIXER_BROWSERS = [
   'bb >= 10'
 ];
 
-var DIST = 'dist';
+var DIST = '../dist';
 
 var dist = function(subpath) {
   return !subpath ? DIST : path.join(DIST, subpath);
@@ -108,7 +108,7 @@ gulp.task('styles', function() {
 // "dot" files are specifically tricky due to them being hidden on
 // some systems.
 gulp.task('ensureFiles', function(cb) {
-  var requiredFiles = ['.bowerrc'];
+  var requiredFiles = ['../.bowerrc'];
 
   ensureFiles(requiredFiles.map(function(p) {
     return path.join(__dirname, p);
@@ -210,7 +210,8 @@ gulp.task('cache-config', function(callback) {
 
 // Clean output directory
 gulp.task('clean', function() {
-  return del(['.tmp', dist()]);
+  console.log('Deleted files and folders');
+  return del(['.tmp', '../dist', dist()], {force: true});
 });
 
 // Watch files for changes & reload
