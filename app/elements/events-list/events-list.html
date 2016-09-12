@@ -71,7 +71,7 @@
       },
 	  _filter: function(pastEvent, country, technology, date) {
 		  return function(item) {
-			  if(item.name!==undefined) {
+			  if(item.name!==undefined && item.technologies!==undefined) {
 			  	return ((pastEvent || (item.timestamp_end > (currentTime/1000))) && (item.country.match(new RegExp(filter.country, 'i'))) && (technology=="" || item.technologies.indexOf(technology)>-1) && (item.human_date_start.match(new RegExp(date, 'i'))));
 			} else {
 				return false;
