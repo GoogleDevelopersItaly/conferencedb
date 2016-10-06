@@ -24,3 +24,7 @@ For deploy your application on firebase hosting
 	6. Chose your project or create a new project
 3. firebase deploy
 
+For test your application before deploy
+
+1. cd third_party
+2. gulp serve:dist
